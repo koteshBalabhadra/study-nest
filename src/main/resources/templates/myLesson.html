@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>View Course</title>
+<link rel="icon" type="image/x-icon" th:href="@{/img/studyNest.png}">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+<!-- Add jQuery -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+</head>
+<body>
+	<div class="bg-dark p-3 mb-4  d-flex justify-content-between">
+		<div class="d-flex justify-content-start">
+				  <img th:src="@{/img/studyNest.png}" class="rounded m-0 p-0 float-start img-fluid" width="5%" height="5%"/>
+			<div class="me-5">
+			<a href="/student/login" class="link-underline link-underline-opacity-0 text-decoration-none"><h1 class="text-warning d-flex justify-content-center">StudyNest</h1></a>
+			</div>
+			<div><a href="/student/purchaseCourse" class="link-underline link-underline-opacity-0 text-decoration-none"><h3 class="text-warning mb-0 mt-3 me-5">Purchase Course</h3></a></div>
+			<div><a href="/student/myCourses" class="link-underline link-underline-opacity-0 text-decoration-none"><h3 class="text-warning mb-0 mt-3">MyCourses</h3></a></div>
+		
+		</div>
+		<div class="d-flex justify-content-around">
+				<div class="mb-0 pb-0">
+				 	<h3 class="text-success"><span th:text="${user.getUsername()}"></span></h3>
+			 	</div>
+			 <div class="mb-0 pb-0 ms-4">
+				<a href="/logout" class="link-underline link-underline-opacity-0"><h3 class="text-warning d-flex justify-content-center">logout</h3></a>
+			 </div>
+			 
+			 </div>
+		</div>
+    <div class="container">
+        <h2 class="mb-4">Lesson Details:</h2>
+        <table class="table table-success table-striped table-bordered">
+            <thead>
+                <tr>
+                    <th scope="col">Lesson Id</th>
+                    <th scope="col">Lesson Name</th>
+                    <th scope="col">Lesson Topics</th>
+                    
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td th:text="${lesson.id}"></td>
+                    <td th:text="${lesson.lname}"></td>
+                    <td th:text="${lesson.ltopics}"></td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h2 class="mt-4 mb-4">Lesson Video:</h2>
+        <div class="embed-responsive embed-responsive-16by9 d-flex justify-content-center mb-5" >
+            <iframe class="embed-responsive-item" 
+                    th:src="@{'https://www.youtube.com/embed/' + ${lesson.llink}}" 
+                    title="YouTube video player" frameborder="0" 
+                    allow="accelerometer; autoplay; clipboard-write; 
+                    encrypted-media; gyroscope; picture-in-picture" 
+                    allowfullscreen
+                    style="width:75%; height:350px">
+            </iframe>
+            
+            
+        </div>
+        
+        <h3 class="">Comments:</h3>
+        <div class="input-group mb-3 container col-3">
+	  <input type="text" class="form-control" id="comment-text" placeholder="" aria-label="" aria-describedby="basic-addon2">
+	  <div class="input-group-append">
+	    <button class="btn btn-outline-primary" type="button" id="postButton">Add Comment</button>
+	  </div>
+		</div>
+		<div class="mb-5">
+        <ul class="list-group list-group-flush" id="myList">
+  		<li class="list-group-item" th:each="com:${commList}">
+			  <h5 th:text="${com.comment}"></h5>
+		  </li>
+</ul>
+
+</div>
+
+</div>
+
+	
+	<footer
+      class=" text-dark footer bg-dark"
+      style="
+	   width: 100%;
+	   color: white;"
+    >
+      <!-- Section: Social media -->
+      <section
+        class=" d-flex justify-content-start p-2 text-white bg-secondary"
+      >
+        <!-- Left -->
+        <div class="w-100"><h5 class="d-block">Get connected with us on social networks:</h5></div>
+        
+        <!-- Left -->
+        <!-- Right -->
+        <div class=" d-flex justify-content-end me-5">
+            <img th:src="@{/footer/logo-facebook.png}" width="2%" class="img-fluid d-block me-3"/>
+            <img th:src="@{/footer/logo-instagram.png}" width="2%" class="img-fluid d-block me-3"/>
+            <img th:src="@{/footer/logo-linkedin.png}" width="2%" class="img-fluid d-block me-3"/>
+            <img th:src="@{/footer/logo-twitter.png}" width="2%" class="img-fluid d-block me-3"/>
+               <img th:src="@{/footer/logo-github.png}" width="2%" class="img-fluid d-block me-3"/>
+        </div>
+        <!-- Right -->
+      </section>
+      <!-- Section: Social media -->
+
+      <!-- Section: Links  -->
+
+      <!-- Section: Links  -->
+
+      <!-- Copyright -->
+      <div class="text-center p-1 text-secondary">
+        © 2023 Copyright:
+        <a class="link text-decoration-none" href="/index" >StudyNest</a>
+      </div>
+      <!-- Copyright -->
+    </footer>
+	
+<script>
+			document.getElementById("postButton").addEventListener("click", function() {
+    var url = '/addcomm'; // Replace with your API endpoint URL
+    var commentTxt = document.getElementById("comment-text").value;
+    document.getElementById("comment-text").value="";
+    var params = {
+		id:11,
+        comment: commentTxt
+    };
+    console.log(params);
+    fetch(url, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/x-www-form-urlencoded' // Set the content type
+        },
+        body: new URLSearchParams(params) // Convert parameters to URL-encoded format
+    })
+    .catch(error => {
+        console.error('Error:', error);
+    });
+    
+    var myList = document.getElementById("myList");
+    	var newList = document.createElement("li");
+ 		var htag = document.createElement("h5")
+ 		htag.innerText= commentTxt
+		newList.append(htag)
+    	newList.classList.add("list-group-item");
+        myList.appendChild(newList);
+        
+     reverseList();
+});
+
+function reverseList() {
+    var myList = document.getElementById("myList");
+    var listItems = myList.getElementsByClassName("list-group-item");
+
+    var reversedList = Array.from(listItems).reverse();
+    
+    myList.innerHTML = ""; // Clear the existing list
+    
+    reversedList.forEach(function(item) {
+        myList.appendChild(item);
+    });
+}
+
+// Call the function to reverse the list on page load or when needed
+
+
+
+window.onload = function() {
+    var myList = document.getElementById("myList");
+    var listItems = myList.getElementsByTagName("li");
+
+    var reversedList = Array.from(listItems).reverse();
+    
+    myList.innerHTML = ""; // Clear the existing list
+    
+    reversedList.forEach(function(item) {
+        myList.appendChild(item);
+    });
+};
+</script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+</body>
+</html>

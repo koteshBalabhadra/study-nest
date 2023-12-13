@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>StudyNest/View Courses</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+  <link rel="icon" type="image/x-icon" th:href="@{/img/studyNest.png}">
+  </head>
+  <body>
+	  
+			
+		
+		<div class="bg-dark p-3  d-flex justify-content-between ">
+		<div class="d-flex justify-content-start">
+		  	<img th:src="@{/img/studyNest.png}" class=" rounded m-0 p-0 float-start" width="7%" height=""/>
+			<div class="me-5">
+			<a href="/trainer/login" class="link-underline link-underline-opacity-0 text-decoration-none"><h1 class="text-warning d-flex justify-content-center">StudyNest</h1></a>
+			</div>
+			<div><a href="/trainer/addCourse" class="link-underline link-underline-opacity-0 text-decoration-none"><h3 class="text-warning mb-0 mt-3 me-5">Add Course</h3></a></div>
+			<div><a href="/trainer/newLesson" class="link-underline link-underline-opacity-0 text-decoration-none"><h3 class="text-warning mb-0 mt-3">Add Lesson</h3></a></div>
+		</div>
+		<div class="d-flex justify-content-around">
+				<div class="mb-0 pb-0">
+				 	<h3 class="text-success"> <span th:text="${user.getUsername()}"></span></h3>
+			 	</div>
+			 <div class="mb-0 pb-0 ms-4">
+				<a href="/logout" class="link-underline link-underline-opacity-0"><h3 class="text-warning d-flex justify-content-center">logout</h3></a>
+			 </div>
+			 
+			 </div>
+		</div>
+		
+		
+    <div class="container col-md-7">
+		<h1 class="text-center text-success mb-3">Available courses</h1>
+		<center>
+<table class="table border rounded shadow table-striped">
+  <thead class="thead-dark bg-dark">
+    <tr>
+      <th scope="col" >Course Id</th>
+      <th scope="col" >Course Name</th>
+      <th scope="col" >Course Price</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr  th:each = "ct:${clist}" >
+      <td th:text="${ct.getCourseId()}" class="ps-2">
+      <td th:text="${ct.getCourseName()}">
+      <td th:text="${ct.getCoursePrice()}">
+    </tr >
+  </tbody>
+</table>
+</center>
+	</div>
+	
+	
+	
+	
+	<footer
+      class=" text-dark footer bg-dark"
+      style="position: fixed;
+	   left: 0;
+	   bottom: 0;
+	   width: 100%;
+	   color: white;"
+    >
+      <!-- Section: Social media -->
+      <section
+        class=" d-flex justify-content-start p-2 text-white bg-secondary "
+      >
+        <!-- Left -->
+        <div class="w-100"><h5 class="d-block">Get connected with us on social networks:</h5></div>
+        
+        <!-- Left -->
+        <!-- Right -->
+        <div class=" d-flex justify-content-end me-5">
+            <img th:src="@{/footer/logo-facebook.png}" width="2%" class="img-fluid d-block me-3"/>
+            <img th:src="@{/footer/logo-instagram.png}" width="2%" class="img-fluid d-block me-3"/>
+            <img th:src="@{/footer/logo-linkedin.png}" width="2%" class="img-fluid d-block me-3"/>
+            <img th:src="@{/footer/logo-twitter.png}" width="2%" class="img-fluid d-block me-3"/>
+               <img th:src="@{/footer/logo-github.png}" width="2%" class="img-fluid d-block me-3"/>
+        </div>
+        <!-- Right -->
+      </section>
+      <!-- Section: Social media -->
+
+      <!-- Section: Links  -->
+
+      <!-- Section: Links  -->
+
+      <!-- Copyright -->
+      <div class="text-center p-1 text-secondary">
+        © 2023 Copyright:
+        <a class="link text-decoration-none" href="/index" >StudyNest</a>
+      </div>
+      <!-- Copyright -->
+    </footer>
+	
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+  </body>
+</html>

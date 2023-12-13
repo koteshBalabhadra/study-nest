@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>StudyNest</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+  	<link rel="icon" type="image/x-icon" th:href="@{/img/studyNest.png}">
+  </head>
+  <body>
+	  <div class="bg-dark p-3 mb-4 ">
+			  <img th:src="@{/img/studyNest.png}" class=" rounded m-0 p-0 float-start" width="5%" height="5%"/>
+	  		<div class="mb-0 pb-0">
+		<a href="/index" class="link-underline link-underline-opacity-0"><h1 class="text-warning d-flex justify-content-center m-0">StudyNest</h1></a>
+			  </div >
+		</div>
+		
+    <div class="container ">
+	<div class="p-1 my-1">
+			<h2 class="text-wargin text-center">Login</h2>
+		</div>
+	<div class=" container-fluid col-md-6 border border-2 shadow rounded">
+	<form class="p-3 " action="/user/validateUser" method="post">
+  <div class="input-group input-group-md my-3">
+  <span class="input-group-text bg-primary text-white w-25" id="inputGroup-sizing-lg">Email:</span>
+  <input type="email" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-lg" id="email" name="email" placeholder="example@kodnest.com">
+</div>
+  <div class="input-group input-group-md my-3">
+  <span class="input-group-text bg-primary text-white w-25" id="inputGroup-sizing-lg">Password:</span>
+  <input type="password" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-lg" id="password" name="password" placeholder="******">
+</div>
+	<div class="d-flex justify-content-center">
+		  <button type="submit" class="btn btn-success ">Submit</button>
+	</div>
+</form>
+<div class="p-2">
+	<h5><a href="/register" class="d-flex justify-content-end p-2">Register</a></h5>
+</div>
+
+</div>
+		</div>
+	
+	<footer
+      class=" text-dark footer bg-dark"
+      style="
+      position: fixed;
+      left: 0;
+	   bottom: 0;
+	   width: 100%;
+	   color: white;"
+    >
+      <!-- Section: Social media -->
+      <section
+        class=" d-flex justify-content-start p-2 text-white bg-secondary"
+      >
+        <!-- Left -->
+        <div class="w-100"><h5 class="d-block">Get connected with us on social networks:</h5></div>
+        
+        <!-- Left -->
+        <!-- Right -->
+        <div class=" d-flex justify-content-end me-5">
+            <img th:src="@{/footer/logo-facebook.png}" width="2%" class="img-fluid d-block me-3"/>
+            <img th:src="@{/footer/logo-instagram.png}" width="2%" class="img-fluid d-block me-3"/>
+            <img th:src="@{/footer/logo-linkedin.png}" width="2%" class="img-fluid d-block me-3"/>
+            <img th:src="@{/footer/logo-twitter.png}" width="2%" class="img-fluid d-block me-3"/>
+               <img th:src="@{/footer/logo-github.png}" width="2%" class="img-fluid d-block me-3"/>
+        </div>
+        <!-- Right -->
+      </section>
+      <!-- Section: Social media -->
+
+      <!-- Section: Links  -->
+
+      <!-- Section: Links  -->
+
+      <!-- Copyright -->
+      <div class="text-center p-1 text-secondary">
+        © 2023 Copyright:
+        <a class="link text-decoration-none" href="/index" >StudyNest</a>
+      </div>
+      <!-- Copyright -->
+    </footer>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+  </body>
+</html>

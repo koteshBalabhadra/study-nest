@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>StudyNest/My Courses</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+<link rel="icon" type="image/x-icon" th:href="@{/img/studyNest.png}">
+</head>
+<body>
+	
+	<div class="bg-dark p-3 mb-4 d-flex justify-content-between fixed-top">
+		<div class="">
+			
+		  <img th:src="@{/img/studyNest.png}" class="rounded m-0 p-0 float-start img-fluid" width="7%" height="7%"/>
+		  	
+		  	<div class="d-flex">
+		  	<div class=" me-5">
+				<a href="/student/login" class=" link-underline-opacity-0 text-decoration-none"><h1 class="text-warning">StudyNest</h1></a>
+			 </div >
+			 <div class="mt-3">
+				<a href="/student/purchaseCourse" class="float-left link-underline-opacity-0 text-decoration-none mt-2"><h3 class="text-warning mb-0">Purchase Course</h3></a>
+			</div>
+			</div>
+		</div>
+
+		<div class="d-flex justify-content-around">
+				<div class="mb-0 pb-0">
+				 	<h3 > Student: <span class="text-success" th:text="${user.getUsername()}"></span></h3>
+			 	</div>
+			 <div class="mb-0 pb-0 ms-4">
+				<a href="/logout" class="link-underline link-underline-opacity-0"><h3 class="text-warning d-flex justify-content-center">logout</h3></a>
+			 </div>
+			 
+			 </div>
+		
+		
+
+	</div>
+		
+	<div class="container mt-5 pt-5"> 
+		<h2 class="text-center text-dark rounded">My Courses</h2>
+		<!-- -->
+<table class="table table-success table-striped table-bordered shadow table">  
+  <thead>
+    <tr class="">
+      <th scope="col"  class="bg-success">Course Id</th>
+      <th scope="col"  class="bg-success">Course Name</th>
+      <th scope="col"  class="bg-success">Lessons</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr th:each="course:${courseList}">
+      <td th:text="${course.courseId}"></td>
+      <td th:text="${course.courseName}"></td>
+      <td>
+		  <div class="dropdown">
+  <button class="btn btn-secondary dropdown-toggle btn-sm" type="button" data-bs-toggle="dropdown" aria-expanded="false" >
+	  View All
+  </button>
+  <ul class="dropdown-menu">
+    <li th:each="lesson: ${course.lessonList}">
+      <a th:href="@{/student/viewLesson(lessonId=${lesson.id})}" class="link-primary dropdown-item" th:text="${lesson.lname}"></a>
+    </li>
+  </ul>
+</div>
+      </td>
+    </tr>
+  </tbody>
+</table>
+		</div>
+		
+		
+	
+	<footer
+      class=" text-dark footer bg-dark"
+      style="position: fixed;
+	   left: 0;
+	   bottom: 0;
+	   width: 100%;
+	   color: white;"
+    >
+      <!-- Section: Social media -->
+      <section
+        class=" d-flex justify-content-start p-2 text-white bg-secondary "
+      >
+        <!-- Left -->
+        <div class="w-100"><h5 class="d-block">Get connected with us on social networks:</h5></div>
+        
+        <!-- Left -->
+        <!-- Right -->
+        <div class=" d-flex justify-content-end me-5">
+            <img th:src="@{/footer/logo-facebook.png}" width="2%" class="img-fluid d-block me-3"/>
+            <img th:src="@{/footer/logo-instagram.png}" width="2%" class="img-fluid d-block me-3"/>
+            <img th:src="@{/footer/logo-linkedin.png}" width="2%" class="img-fluid d-block me-3"/>
+            <img th:src="@{/footer/logo-twitter.png}" width="2%" class="img-fluid d-block me-3"/>
+               <img th:src="@{/footer/logo-github.png}" width="2%" class="img-fluid d-block me-3"/>
+        </div>
+        <!-- Right -->
+      </section>
+      <!-- Section: Social media -->
+
+      <!-- Section: Links  -->
+
+      <!-- Section: Links  -->
+
+      <!-- Copyright -->
+      <div class="text-center p-1 text-secondary">
+        © 2023 Copyright:
+        <a class="link text-decoration-none" href="/index" >StudyNest</a>
+      </div>
+      <!-- Copyright -->
+    </footer>
+	
+		
+		    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+</body>
+</html>
